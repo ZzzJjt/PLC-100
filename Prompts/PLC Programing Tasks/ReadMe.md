@@ -73,16 +73,28 @@ The system operates in two modes: Manual Mode and Auto Mode. These modes are int
 
 The system should ensure that manual and auto modes cannot operate simultaneously, using interlocking logic to prevent conflicts between the two modes.
 
-**9.Empty Bottle Removal:**
+**9.Empty Bottle Removal for Packaging Line Using 61131-3 Structured Text:**
 
-Write a self-contained 61131-3 structured text program for packaging bottles. After filling, the bottles are moved with a conveyor to packaging. A proximity sensor detects any bottle, another one only empty bottles. A cylinder removes empty bottles.
+Write a self-contained 61131-3 structured text (ST) program to automate the removal of empty bottles in a packaging line. After bottles are filled, they are transported by a conveyor toward the packaging station. The system includes two proximity sensors: one detects the presence of any bottle, and the second detects only empty bottles. When an empty bottle is detected, a pneumatic cylinder is activated to remove the empty bottle from the conveyor before it reaches the packaging area.
 
-**10.Coffee Maker:**
+Ensure that the program controls the conveyor and cylinder operations efficiently, preventing any empty bottles from continuing to the packaging process, while maintaining smooth operation for filled bottles.
 
-Write a self-contained 61131-3 structured text program for a coffee machine.
+**10.Coffee Maker Control Using 61131-3 Structured Text:**
 
-This machine contains three tanks, each for coffee, milk, and mixer, and three valves, one for the coffee, one for the milk, and the last valve for the output. This coffee machine contains a mixer, which is required to mix the coffee and milk properly to create the best output, The mixer is designed to work for four seconds after which it will automatically stop and the output valve will open to get the output.
+Write a self-contained 61131-3 structured text (ST) program to control a coffee machine that manages three tanks (coffee, milk, and mixer) and three valves (one for coffee, one for milk, and one for output). The machine should mix coffee and milk properly to create the best output, following this process:
 
-The mixer is designed with a timer and will automatically start when the mixer tank reaches the maximum level, the tank is attached to the mixer as both the valves of coffee and milk are open and it started to fill the mixer and then the tank level comes into play with the preset maximum level, the mixer tank can be filled up to 130ml as it reaches the maximum level, the valves of coffee and milk will close and then it will start the mixing.
+System Description:
 
-The coffee machine contains four Push buttons. Button one is for emergency stop, Button two is to start the machine, Button three is for Coffee and Milk and the last button is for Coffee only. The emergency stop is use as a safety button if anything goes wrong in the machine like if any of the valves not open, if the tank level does not work properly, if the mixer fails to work properly or any of the unexpected events occur, then there is a need of emergency stop to stop the machine instantly.
+	1.	Tanks and Valves:
+	•	The coffee and milk valves open to fill the mixer tank. The mixer tank can hold up to 130ml, and when it reaches the maximum level, the coffee and milk valves will close.
+	2.	Mixing Process:
+	•	Once the tank is full, the mixer starts automatically and runs for 4 seconds. After mixing is complete, the output valve opens to dispense the coffee.
+	3.	Control Buttons:
+	•	Button 1: Emergency Stop — Stops the entire system instantly in case of malfunction, such as valve failures, tank level issues, or mixer failures.
+	•	Button 2: Start — Begins the coffee-making process.
+	•	Button 3: Coffee and Milk — Prepares coffee with milk by opening both the coffee and milk valves.
+	•	Button 4: Coffee Only — Prepares coffee without milk by only opening the coffee valve.
+
+Safety Features:
+
+	•	Implement the emergency stop to handle unexpected events, such as valve malfunctions, tank level detection failures, or mixer operation failures. When triggered, the system should stop immediately to ensure safety.
