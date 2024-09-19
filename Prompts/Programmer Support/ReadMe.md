@@ -274,15 +274,20 @@ UpdateTemperaturesAndPressures();
 END_LOOP; END_PROGRAM
 
 Consider that the program is executed cyclically in a task according to the 61131-3 programming model. Thus no explicit main loop is needed. Please fix the code by removing the 'LOOP'.
+
 **6.Programming Reference:**
-Compile a comprehensive list of all valid keywords used in the IEC 61131-3 Structured Text programming language, ensuring that it covers both standard control flow structures and data types. Include examples of usage for key functions where applicable。
+Compile a comprehensive list of all valid keywords used in the IEC 61131-3 Structured Text programming language, ensuring that it covers both standard control flow structures and data types. Include examples of usage for key functions where applicable.
+
 **7.List Mathematical Function Blocks:**
 Compile a detailed list of all mathematical function blocks available in the OSCAT library for PLC programming, including a brief description of their functionality and typical use cases.
+
 **8.Explanation PID Function Block**
 Provide a comprehensive explanation of the inputs and outputs of the PID function block in the OSCAT library, including the role of each parameter in process control and examples of practical implementation in industrial applications.
+
 **9.Object-oriented 61131-3:**
 Discuss the concept of classes and methods introduced in IEC 61131-3 Version 3.0, including a detailed explanation of their limitations, advantages, and disadvantages in the context of industrial automation. Provide a relevant example to illustrate these concepts in practice.
 
 Explain how inheritance is implemented in IEC 61131-3, building on the previous example to show how derived classes can extend base functionality. Additionally, refine the example further to demonstrate polymorphism within this framework, discussing its practical applications and constraints.
+
 **10.Learning IEC 61499:**
 Provide a concise introduction to the IEC 61499 programming language, emphasizing key concepts for someone already familiar with IEC 61131-3. Include a comparison of their fundamental differences in terms of architecture, execution models, and flexibility for distributed control systems. Additionally, compile a list of five key references for further reading on IEC 61499, highlighting its relevance in modern industrial applications.
