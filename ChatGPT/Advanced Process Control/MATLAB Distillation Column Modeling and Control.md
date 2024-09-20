@@ -55,6 +55,7 @@ Next, we implement MPC using the discretized model. The controller will optimize
 
 Here’s an example of the MPC implementation:
 
+```
 % Define the MPC controller
 mpcobj = mpc(sys_d, Ts);
 
@@ -94,7 +95,7 @@ end
 % Display the results
 fprintf('Final output temperature: %.2f\n', y(Tf));
 fprintf('Final feed rate: %.2f\n', u(Tf)); 
-
+```
 **Explanation:**
 
 	1.	Model Definition: We define a simple state-space model of the distillation column, focusing on temperatures and feed rates.
