@@ -44,7 +44,7 @@ y_min = 100;   % Minimum temperature (operational lower bound)
 y_max = 200;   % Maximum temperature (operational upper bound)
 
 % Initial state of the system
-x0 = [150; 120]; % Initial tray temperatures```
+x0 = [150; 120]; % Initial tray temperatures ```
 
 **Step 2: Implement Model Predictive Control (MPC)**
 
@@ -90,7 +90,7 @@ end
 
 % Display the results
 fprintf('Final output temperature: %.2f\n', y(Tf));
-fprintf('Final feed rate: %.2f\n', u(Tf));```
+fprintf('Final feed rate: %.2f\n', u(Tf)); ```
 
 **Explanation:**
 
