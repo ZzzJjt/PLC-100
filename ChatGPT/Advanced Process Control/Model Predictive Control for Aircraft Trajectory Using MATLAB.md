@@ -59,4 +59,8 @@ Step 2: MPC Cost Function
 
 The cost function minimizes fuel consumption while considering safety and performance objectives. This is generally formulated as:
 
+$$
+J=\sum_{k=0}^N\left(w_1 \cdot \operatorname{fuel}\left(u_k\right)+w_2 \cdot \text { deviation }\left(x_k\right)+w_3 \cdot \text { control } \operatorname{effort}\left(u_k\right)\right)
+$$
+
 
