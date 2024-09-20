@@ -24,7 +24,7 @@ $$\dot{y}(t)$$ is the output (distillate and bottom product compositions, or key
 
 Here is an example MATLAB code for the model:
 
-% Distillation column model parameters (assumed values)
+```% Distillation column model parameters (assumed values)
 A = [-0.5, 0.1; 0.05, -0.3]; % System matrix
 B = [0.2; 0.1];               % Input matrix
 C = [1, 0];                   % Output matrix (measure temperature of tray 1)
@@ -44,7 +44,7 @@ y_min = 100;   % Minimum temperature (operational lower bound)
 y_max = 200;   % Maximum temperature (operational upper bound)
 
 % Initial state of the system
-x0 = [150; 120]; % Initial tray temperatures
+x0 = [150; 120]; % Initial tray temperatures```
 
 **Step 2: Implement Model Predictive Control (MPC)**
 
@@ -52,7 +52,7 @@ Next, we implement MPC using the discretized model. The controller will optimize
 
 Here’s an example of the MPC implementation:
 
-% Define the MPC controller
+```% Define the MPC controller
 mpcobj = mpc(sys_d, Ts);
 
 % Prediction horizon and control horizon
@@ -90,7 +90,7 @@ end
 
 % Display the results
 fprintf('Final output temperature: %.2f\n', y(Tf));
-fprintf('Final feed rate: %.2f\n', u(Tf));
+fprintf('Final feed rate: %.2f\n', u(Tf));```
 
 **Explanation:**
 
