@@ -92,5 +92,9 @@ print("Optimal valve position for the next step: ", optimal_valve_position)
 **Key Aspects:**
 
 •	State Dynamics: The code uses a simple linear model for the turbine, which can be replaced with a more detailed model if necessary.
+
 •	Control Constraints: The valve position is bounded by operational constraints.
+
 •	Load Handling: The code simulates a load disturbance that affects the power output, ensuring robust performance under varying conditions.
+
+You can modify this to suit more complex models or add more constraints as needed.
