@@ -98,8 +98,10 @@ fprintf('Final feed rate: %.2f\n', u(Tf));
 ```
 **Explanation:**
 
-	1.	Model Definition: We define a simple state-space model of the distillation column, focusing on temperatures and feed rates.
-	2.	MPC Controller Setup: The MPC controller is configured with prediction and control horizons, cost function weights, and input/output constraints.
-	3.	Simulation Loop: The system is simulated over a time horizon T_f, where the MPC controller calculates optimal feed rates at each time step to minimize deviations from the desired temperature setpoint.
+1.Model Definition: We define a simple state-space model of the distillation column, focusing on temperatures and feed rates.
+
+2.MPC Controller Setup: The MPC controller is configured with prediction and control horizons, cost function weights, and input/output constraints.
+   
+3.Simulation Loop: The system is simulated over a time horizon T_f, where the MPC controller calculates optimal feed rates at each time step to minimize deviations from the desired temperature setpoint.
 
 This code avoids plotting but simulates the system to show the final feed rate and temperature. You can modify the model parameters, constraints, and cost function weights based on the specific dynamics of your distillation column model.
