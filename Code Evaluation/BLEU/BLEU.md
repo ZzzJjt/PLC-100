@@ -1,3 +1,4 @@
+```
 # Importing the necessary libraries
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 
@@ -19,3 +20,4 @@ hypothesis_sentence = "the cat is on the mat"
 # Calculate BLEU score
 bleu_score = calculate_bleu(reference_sentences, hypothesis_sentence)
 bleu_score
+```
