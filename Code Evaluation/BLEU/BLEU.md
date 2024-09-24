@@ -62,3 +62,15 @@ bleu_score_adaptive = calculate_adaptive_bleu(reference_sentences, hypothesis_se
 
 bleu_score_default, bleu_score_adaptive
 ```
+
+**代码解释：**
+
+1.	ngram_weights：允许你传入一个自定义的权重列表，这个列表定义了 1-gram 到 4-gram 的权重。例如，ngram_weights=(0.1, 0.2, 0.3, 0.4) 意味着我们更重视 3-gram 和 4-gram 的匹配，而降低了 1-gram 和 2-gram 的权重。
+2.	smoothing_function：继续使用平滑函数，确保在高 n-gram 中没有匹配时不会导致零精度。
+**BLEU 反馈值：**
+•	bleu_score_default：使用默认的等权重（0.25, 0.25, 0.25, 0.25），反映不同 n-gram 匹配的相对重要性相同。
+•	bleu_score_adaptive：使用自适应权重（0.1, 0.2, 0.3, 0.4），这里更强调更长的词组匹配（高 n-gram）的贡献。
+
+**结果与应用：**
+
+自适应权重的设置可以根据任务需求灵活调整，比如在需要较多的高 n-gram 匹配（复杂短语或技术文档生成）时，可以增加 3-gram 和 4-gram 的权重；对于简单任务，可以更关注 1-gram 和 2-gram 的匹配。这样能够使得 BLEU 指标更加适应特定任务。
