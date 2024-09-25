@@ -95,12 +95,16 @@ codebleu_score
 **代码解析：**
 	1.	BLEU：
 	•	使用 nltk 的 sentence_bleu 方法来计算标准的 BLEU 分数。
+ 
 	2.	BLEUweight：
 	•	我们根据 token 权重对生成的句子进行加权 n-gram 匹配。例如，函数名 def 和关键字 return 被赋予更高的权重，而变量名 x、y 则被赋予较低的权重。
+ 
 	3.	AST Match：
 	•	使用 Python 的 ast 模块将代码转换为抽象语法树（AST），然后比较生成代码和参考代码的 AST 是否相同。
+ 
 	4.	Data Flow Match：
 	•	对比生成代码和参考代码中的变量使用情况，计算变量定义和引用的相似性。此步骤通过 ast.walk 遍历 AST 树，提取所有变量名。
+ 
 	5.	CodeBLEU 计算：
 	•	按照公式 CodeBLEU = α· BLEU + β· BLEUweight + γ· Matchast + δ· Matchdf 计算最终的 CodeBLEU 分数。你可以调整权重 α、β、γ、δ 来适应不同任务的需求。
 
@@ -110,6 +114,7 @@ codebleu_score
 
 **创新思路：**
 	1.	自监督框架：我们可以让模型生成代码，然后通过 CodeBLEU 进行评估。在每一轮训练后，模型根据评估结果进行自我调整。
+ 
 	2.	强化学习：
 	•	奖励函数：使用 CodeBLEU 分数作为奖励函数，模型将获得一个反馈信号，告知生成代码的质量。
 	•	策略优化：根据 CodeBLEU 反馈，模型调整生成策略，目标是最大化 CodeBLEU 分数。
@@ -117,14 +122,19 @@ codebleu_score
 **实现步骤：**
 
 	1.	生成代码：模型生成候选代码（假设由某个生成模型提供）。
+ 
 	2.	评估代码：使用 CodeBLEU 对生成代码进行评分，衡量代码质量。
+ 
 	3.	反馈调整：根据 CodeBLEU 评分，模型调整其策略，目标是最大化评分。
 
 **强化学习核心步骤：**
 
 	1.	状态（State）：当前代码生成状态，包含候选代码。
+ 
 	2.	动作（Action）：模型选择的代码生成策略，例如对下一步 token 的预测。
+ 
 	3.	奖励（Reward）：CodeBLEU 分数作为奖励，模型在执行动作后获得此反馈。
+ 
 	4.	策略（Policy）：模型根据策略生成下一步代码，策略根据 CodeBLEU 反馈不断优化。
 
 ```
