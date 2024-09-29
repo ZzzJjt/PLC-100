@@ -102,7 +102,7 @@ int main() {
 ```
 **Explanation of Code:**
 
-  1.	External Conditions Simulation:
+  	1.	External Conditions Simulation:
 
 	•	Functions external_temperature and external_humidity simulate varying external conditions using sinusoidal patterns to represent typical environmental fluctuations.
 
