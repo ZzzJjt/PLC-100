@@ -125,7 +125,7 @@ END_IF
 
 **Example Scenarios**
 
-1.	Registering a New PDO or CAN Message:
+	1.	Registering a New PDO or CAN Message:
 	•	Input: REGISTER = TRUE, COBID = 1234
 	•	Output: operationStatus = "COBID Registered: 1234"
 	2.	Deleting a Specific PDO:
