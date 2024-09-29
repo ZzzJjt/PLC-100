@@ -91,6 +91,7 @@ int main() {
 }
 ```
 **Explanation of Code:**
+
   	1.	Wind Speed Simulation:
 	•	The simulate_wind_speed function generates varying wind speeds based on a sinusoidal pattern combined with random noise.
  
@@ -105,6 +106,7 @@ int main() {
 	•	The main function simulates 24 hours of wind farm operation, printing the results for wind speed, power output, battery level, and grid power supplied at each time step.
  
 **Future Enhancements:**
+
  	1.	Add more detailed turbine dynamics, such as blade pitch and yaw control.
    
 	2.	Include more sophisticated grid stability constraints and reactive power management.
