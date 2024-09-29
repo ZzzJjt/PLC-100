@@ -80,7 +80,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-Explanation of Code:
+**Explanation of Code:**
 
 	1.	Defining Fuzzy Variables:
 	•	The fuzzy variables temperature, pressure, and reaction_rate are defined with their respective ranges and membership functions.
