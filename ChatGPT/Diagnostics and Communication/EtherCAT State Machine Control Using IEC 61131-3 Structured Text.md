@@ -144,3 +144,17 @@ CASE currentState OF
         stateError := TRUE; (* Unsupported state *)
 END_CASE
 ```
+
+5. Implementation Details:
+
+	1.	State Transition Sequence:
+	•	The program begins in the INIT state and sequentially transitions through PREOP, SAFEOP, and finally OP.
+	•	Each state transition occurs only after a 5-second delay, managed using a TON timer.
+	2.	Using the FB_ESM_Control Function Block:
+	•	The FB_ESM_Control function block handles communication with the EtherCAT master. It takes inputs such as SlaveID (specifying the target slave), RequestedState, and a Execute trigger.
+	•	The function block outputs include Done (indicating successful state change), Busy (indicating in-progress state transition), and Error flags.
+	3.	Error Handling and Compliance:
+	•	The program uses error flags to detect any issues during state transitions.
+	•	If a state change is not permissible (e.g., transitioning from SAFEOP to BOOT), the program sets the stateError flag.
+	4.	Integration with EtherCAT Master:
+	•	The FB_ESM_Control function block should be linked with the EtherCAT master API/library provided by the vendor, ensuring real-time interaction with the EtherCAT network.
