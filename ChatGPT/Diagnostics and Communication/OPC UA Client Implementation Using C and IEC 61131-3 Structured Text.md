@@ -126,7 +126,7 @@ ELSIF myOPCUAClient.Error THEN
 END_IF
 ```
 
-4. Explanation of the Implementation:
+**4. Explanation of the Implementation:**
 
 C Function Block (OPCUA_ConnectToServer):
 
