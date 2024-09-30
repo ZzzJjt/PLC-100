@@ -145,7 +145,7 @@ CASE currentState OF
 END_CASE
 ```
 
-5. Implementation Details:
+**5. Implementation Details:**
 
 	1.	State Transition Sequence:
 	•	The program begins in the INIT state and sequentially transitions through PREOP, SAFEOP, and finally OP.
