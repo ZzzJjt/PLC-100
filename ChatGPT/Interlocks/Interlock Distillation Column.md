@@ -61,16 +61,21 @@ Role of Interlocks in Distillation Column Safety
 Interlocks in a distillation column play a critical role in maintaining safe operating conditions by ensuring that the system responds automatically to abnormal situations. The key functions of interlocks include:
 
 	**1.	Overpressure Protection:**
+ 
 	•	Prevents the distillation column from exceeding design pressure limits, which could otherwise lead to equipment damage or rupture.
 	•	Pressure relief interlocks (e.g., opening the pressure relief valve) immediately alleviate high pressure to prevent hazardous conditions.
 	**2.	Temperature Control:**
+ 
 	•	Monitors reboiler temperature to avoid overheating, which can degrade product quality and pose a risk of thermal decomposition or ignition.
 	•	Automatically shuts off the reboiler heat supply if the temperature exceeds the safe limit.
 	**3.	Level Management:**
+ 
 	•	Maintains liquid level within the desired range, preventing column flooding or vapor flow disruption.
 	•	Shuts off the feed supply if the liquid level is too high, ensuring the column operates within safe constraints.
 	**4.	Process Stability and Reliability:**
+ 
 	•	Interlocks help maintain process stability by ensuring that critical parameters are continuously monitored and controlled.
 	•	Prevents process upsets that can propagate through interconnected units, affecting overall plant stability.
 	**5.	Protecting Personnel and Equipment:**
+ 
 	•	By implementing safety interlocks, the distillation column system minimizes risks to personnel and equipment, ensuring safe and reliable operation.
