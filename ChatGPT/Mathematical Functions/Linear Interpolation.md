@@ -3,10 +3,7 @@ Structured Text Implementation for Linear Interpolation
 Here’s a self-contained function block for performing linear interpolation in IEC 61131-3 Structured Text. This function block computes an interpolated value for a given input X based on two points (X0, Y0) and (X1, Y1) using the standard linear interpolation formula:
 
 Linear Interpolation Formula:
-$$
-Y = Y_0 + \frac{(Y_1 - Y_0)}{(X_1 - X_0)} \times (X - X_0)
-$$
-
+`$ Y = Y_0 + \frac{(Y_1 - Y_0)}{(X_1 - X_0)} \times (X - X_0) $`
 This formula assumes that X lies between X0 and X1. The result, Y, is the interpolated value corresponding to X.
 
 ```
