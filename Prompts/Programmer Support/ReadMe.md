@@ -65,6 +65,7 @@ END_WHILE
 // Read the emergency vehicle sensor state from an input FUNCTION ReadEmergencyVehicleSensor: BOOL // Code to read the input goes here END_FUNCTION
 
 // Set the traffic lights based on the variables PROCEDURE SetTrafficLights( green: BOOL; yellow: BOOL; red: BOOL ) // Code to set the traffic lights goes here END_PROCEDURE
+
 **2.Explain Cascade Control Code:**
 
 Explain the following code: PROGRAM CascadeControl VAR // Primary loop variables PV1: REAL; // Process variable: vessel pressure SP1: REAL; // Setpoint: target pressure OP1: REAL; // Output: secondary loop setpoint Kp1: REAL := 1.0; // Proportional gain Ki1: REAL := 0.1; // Integral gain Kd1: REAL := 0.05; // Derivative gain e1, e1_prev, e1_sum, e1_diff: REAL;
