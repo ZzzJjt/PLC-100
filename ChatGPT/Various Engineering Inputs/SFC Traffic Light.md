@@ -1,33 +1,5 @@
 The Sequential Function Chart (SFC) represents the control logic of a simple traffic light system with three states: Red, Green, and Yellow. Each state will have a defined timer delay to control the timing of the lights.
 
-─────────────────────────────────────────────────────────────────────────  
- Start ───▶┌───────────────┐          ┌───────────────┐          ┌───────────────┐  
-           │  Red Light ON │          │ Green Light ON│          │ Yellow Light ON│  
-           │               │          │               │          │               │  
-           │  TMR = 10 sec │          │  TMR = 15 sec │          │  TMR = 3 sec  │  
-           └───────┬───────┘          └───────┬───────┘          └───────┬───────┘  
-                   │                          │                          │  
-                   │                          │                          │  
-        ┌──────────▼──────────┐      ┌────────▼──────────┐      ┌────────▼──────────┐  
-        │  Transition (T1)    │      │  Transition (T2)  │      │  Transition (T3)  │  
-        │                     │      │                  │      │                  │  
-        │  Condition: TMR_DN  │      │ Condition: TMR_DN│      │ Condition: TMR_DN │  
-        │  (Timer Done)       │      │ (Timer Done)     │      │ (Timer Done)      │  
-        └──────────┬──────────┘      └────────┬─────────┘      └────────┬─────────┘  
-                   │                          │                          │  
-                   ▼                          ▼                          ▼  
-         ┌─────────────────┐        ┌─────────────────┐        ┌─────────────────┐  
-         │ Reset Red Timer │        │ Reset Green Timer│       │ Reset Yellow Timer│  
-         └─────────────────┘        └─────────────────┘        └─────────────────┘  
-                   │                          │                          │  
-                   ▼                          ▼                          ▼  
-           ┌───────────────┐          ┌───────────────┐          ┌───────────────┐  
-           │  Green Light  │          │ Yellow Light  │          │  Red Light   │  
-           │     ON        │          │     ON        │          │     ON        │  
-           └───────────────┘          └───────────────┘          └───────────────┘  
-
-─────────────────────────────────────────────────────────────────────────  
-
 ![image](https://github.com/user-attachments/assets/007fa42a-144d-40a6-b543-1b43644fba1b)
 
 State Descriptions and Timer Details:
