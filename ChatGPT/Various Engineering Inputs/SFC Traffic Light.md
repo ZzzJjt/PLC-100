@@ -28,6 +28,7 @@ The Sequential Function Chart (SFC) represents the control logic of a simple tra
 
 ─────────────────────────────────────────────────────────────────────────  
 
+![image](https://github.com/user-attachments/assets/007fa42a-144d-40a6-b543-1b43644fba1b)
 
 State Descriptions and Timer Details:
 
