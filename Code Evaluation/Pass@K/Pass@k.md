@@ -156,7 +156,7 @@ task_complexities = [2, 7]  # Task 1 is easy, Task 2 is difficult
 pass_at_k_score = dynamic_pass_at_k(reference_solutions, generated_code_candidates, task_complexities)
 print(f"Dynamic Pass@k Score: {pass_at_k_score:.2f}")
 ```
-关键更改：
+**关键更改：**
 
 	1.	动态 k 值：determine_k 函数根据任务的复杂性调整生成的候选数量 (k)。
 	2.	任务复杂性：可以提供一个复杂度分数或指标来反映每个任务的难度，进而影响生成的候选数量。
