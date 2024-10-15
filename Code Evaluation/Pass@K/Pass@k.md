@@ -68,16 +68,16 @@ print(f"Pass@{k} Score: {pass_at_k_score:.2f}")
  
 	2.	pass_at_k：
  
-	•	reference_solutions：这是参考答案列表，每个元素对应一个任务的正确代码。
+	reference_solutions：这是参考答案列表，每个元素对应一个任务的正确代码。
  
-	•	generated_code_candidates：这是生成的候选代码的列表，每个元素是一个子列表，包含 k 个生成的候选代码。
+	generated_code_candidates：这是生成的候选代码的列表，每个元素是一个子列表，包含 k 个生成的候选代码。
  
-	•	k：每个任务生成的代码候选个数。
+	k：每个任务生成的代码候选个数。
 在函数内部，通过检查每个任务的 k 个候选代码是否至少有一个正确。如果有，计数器 successful_tasks 增加。最后，Pass@k 的分数是成功解决的任务数占总任务数的比例。
 
 	3.	Example：
  
-	•	两个任务的参考解决方案：add 和 multiply 函数。
+	两个任务的参考解决方案：add 和 multiply 函数。
  
-	•	每个任务生成了 2 个候选代码，k=2。
+	每个任务生成了 2 个候选代码，k=2。
 
