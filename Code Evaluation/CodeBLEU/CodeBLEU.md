@@ -93,6 +93,7 @@ codebleu_score = calculate_codebleu(reference_code, hypothesis_code, reference_s
 codebleu_score
 ```
 **代码解析：**
+
 	1.	BLEU：
 	使用 nltk 的 sentence_bleu 方法来计算标准的 BLEU 分数。
  
@@ -113,6 +114,7 @@ codebleu_score
 自监督学习和强化学习可以帮助我们实现自适应 CodeBLEU 优化，通过对生成代码的反馈来动态调整模型生成策略。我们将 CodeBLEU 指标作为强化学习中的 奖励函数，通过迭代训练模型使其生成更符合目标要求的代码。
 
 **创新思路：**
+
 	1.自监督框架：我们可以让模型生成代码，然后通过 CodeBLEU 进行评估。在每一轮训练后，模型根据评估结果进行自我调整。
  
 	2.强化学习：
