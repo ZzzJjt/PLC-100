@@ -1,3 +1,4 @@
+```
 import numpy as np
 import pandas as pd
 
@@ -39,3 +40,4 @@ def reactor_simulation(temp_target, model, initial_conditions):
         temp_current += (predicted_heating[0][0] - temp_current) * 0.1
         
         print(f"Current Temperature: {temp_current}, Target: {temp_target}")
+```
