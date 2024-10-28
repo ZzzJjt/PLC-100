@@ -1,34 +1,29 @@
 ```
-FUNCTION_BLOCK MeanStdDev
+FUNCTION_BLOCK NaturalLogarithm
 VAR_INPUT
-    Data : ARRAY [1..100] OF INT; // Input array of 100 integers
+    Input : REAL; // Input value for which the natural logarithm is computed
 VAR_OUTPUT
-    Mean : REAL; // Mean value
-    StdDev : REAL; // Standard deviation
+    Result : REAL; // The natural logarithm of the input value
 VAR
-    Sum : REAL := 0; // Sum of the elements
-    SumOfSquares : REAL := 0; // Sum of the squares of the elements
-    N : INT := 100; // Number of elements in the array
-    Element : REAL; // Temporary variable for element conversion
+    epsilon : REAL := 1E-9; // Small positive number to handle edge cases
 END_VAR
 
-// Calculate the sum of the elements
-FOR i := 1 TO N DO
-    Element := REAL(Data[i]); // Convert integer to real to avoid overflow
-    Sum := Sum + Element;
-END_FOR
+// Check if the input is positive
+IF Input > 0 THEN
+    // Compute the natural logarithm using the built-in function
+    Result := LN(Input);
+ELSIF Input = 0 THEN
+    // Handle the case where the input is zero
+    Result := -INF; // Negative infinity represents undefined ln(0)
+ELSE
+    // Handle the case where the input is negative
+    Result := -INF; // Negative infinity represents undefined ln(x) for x < 0
+END_IF;
 
-// Calculate the mean
-Mean := Sum / REAL(N);
-
-// Calculate the sum of the squares of the elements
-FOR i := 1 TO N DO
-    Element := REAL(Data[i]);
-    SumOfSquares := SumOfSquares + (Element - Mean) * (Element - Mean);
-END_FOR
-
-// Calculate the standard deviation
-StdDev := SQRT(SumOfSquares / REAL(N));
+// Additional check to handle very small positive numbers close to zero
+IF Input < epsilon THEN
+    Result := -INF; // Negative infinity for values too close to zero
+END_IF;
 
 END_FUNCTION_BLOCK
 ```
