@@ -1,6 +1,3 @@
-**1. C Code for OPC UA Client Function Block:**
-
-The C function block leverages the Open62541 library to implement OPC UA client functionalities such as server connection, error handling, and communication management.
 ```
 #include <open62541/client.h>
 #include <open62541/client_config_default.h>
@@ -48,9 +45,6 @@ void OPCUA_ConnectToServer(OPCUA_ClientType *params) {
 }
 ```
 
-**2. IEC 61131-3 Structured Text Wrapper:**
-
-The C function block is wrapped inside an IEC 61131-3 structured text function block to integrate it with a PLC programming environment. This wrapper manages the inputs and outputs, invokes the C function, and maps the results to the appropriate variables.
 ```
 FUNCTION_BLOCK FB_OPCUA_Client
 VAR
@@ -98,10 +92,6 @@ Busy := opcuaParams^.busy;
 Error := opcuaParams^.error;
 ErrorID := opcuaParams^.errorID;
 ```
-
-**3. Structured Text Program Using the Function Block:**
-
-The structured text program instantiates and uses the FB_OPCUA_Client function block to establish an OPC UA connection.
 ```
 PROGRAM Main
 VAR
@@ -125,18 +115,3 @@ ELSIF myOPCUAClient.Error THEN
     WriteString('OPC UA Client connection failed. Error ID: ', DWORD_TO_STRING(myOPCUAClient.ErrorID));
 END_IF
 ```
-
-**4. Explanation of the Implementation:**
-
-C Function Block (OPCUA_ConnectToServer):
-
-	•	The OPCUA_ConnectToServer function handles the OPC UA client connection using the Open62541 library.
-	•	It initializes the client using UA_Client_new(), sets up the default configuration using UA_ClientConfig_setDefault(), and attempts to connect to the specified serverUrl.
-	•	If the connection is successful, it sets the done flag to true; otherwise, it sets the error flag and captures the error code in errorID.
-	•	The function then disconnects the client using UA_Client_disconnect() and cleans up resources with UA_Client_delete().
-
-IEC 61131-3 Structured Text Wrapper:
-
-	•	The ST function block FB_OPCUA_Client wraps the C code, allowing it to be used within an IEC 61131-3 environment.
-	•	The ST wrapper converts the ServerUrl input from STRING to a C-compatible array using a FOR loop and the MEMCPY function.
-	•	The Timeout input is converted from TIME to milliseconds (DWORD) using TIME_TO_DWORD.
