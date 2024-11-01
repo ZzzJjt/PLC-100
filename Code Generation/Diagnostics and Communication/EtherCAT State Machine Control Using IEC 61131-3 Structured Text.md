@@ -1,11 +1,3 @@
-**EtherCAT State Machine Control Using IEC 61131-3 Structured Text**
-
-The following structured text program manages state transitions for an EtherCAT slave device using the EtherCAT State Machine (ESM). The program sequentially transitions through the states (INIT, PREOP, SAFEOP, OP, and BOOT) while incorporating a 5-second delay between state changes to ensure stability and compliance with the EtherCAT protocol.
-
-**1. State Definitions:**
-
-Each EtherCAT state is defined using descriptive constants, making the code more readable and intuitive. This ensures that transitions occur only between permissible states, as dictated by the EtherCAT protocol.
-
 ```
 (* Define EtherCAT State Constants *)
 VAR CONSTANT
@@ -16,10 +8,6 @@ VAR CONSTANT
     STATE_BOOT : INT := 3; (* BOOT state, if required *)
 END_VAR
 ```
-
-**2. Variable Declarations:**
-
-The program uses a combination of timers, state variables, and status flags to manage state transitions and track the current state.
 ```
 VAR
     (* EtherCAT State Machine Variables *)
@@ -39,10 +27,6 @@ VAR
     initTransition : BOOL; (* TRUE if initial transition sequence started *)
 END_VAR
 ```
-
-**3. EtherCAT State Machine Function Block:**
-
-The function block FB_ESM_Control handles communication with the EtherCAT master to send and receive state commands for the slave device. It uses standard EtherCAT protocol function blocks provided by the vendor library. The following structure is used:
 ```
 FUNCTION_BLOCK FB_ESM_Control
 VAR_INPUT
@@ -60,10 +44,6 @@ VAR_OUTPUT
     ErrorID : DWORD; (* Error ID if any issues are detected *)
 END_VAR
 ```
-
-**4. Main Program Logic for State Control:**
-
-The structured text program uses a state machine to transition through the EtherCAT states. A 5-second timer ensures proper timing between each state change.
 ```
 PROGRAM Main
 VAR
@@ -144,17 +124,3 @@ CASE currentState OF
         stateError := TRUE; (* Unsupported state *)
 END_CASE
 ```
-
-**5. Implementation Details:**
-
-	1.	State Transition Sequence:
-	•	The program begins in the INIT state and sequentially transitions through PREOP, SAFEOP, and finally OP.
-	•	Each state transition occurs only after a 5-second delay, managed using a TON timer.
-	2.	Using the FB_ESM_Control Function Block:
-	•	The FB_ESM_Control function block handles communication with the EtherCAT master. It takes inputs such as SlaveID (specifying the target slave), RequestedState, and a Execute trigger.
-	•	The function block outputs include Done (indicating successful state change), Busy (indicating in-progress state transition), and Error flags.
-	3.	Error Handling and Compliance:
-	•	The program uses error flags to detect any issues during state transitions.
-	•	If a state change is not permissible (e.g., transitioning from SAFEOP to BOOT), the program sets the stateError flag.
-	4.	Integration with EtherCAT Master:
-	•	The FB_ESM_Control function block should be linked with the EtherCAT master API/library provided by the vendor, ensuring real-time interaction with the EtherCAT network.
