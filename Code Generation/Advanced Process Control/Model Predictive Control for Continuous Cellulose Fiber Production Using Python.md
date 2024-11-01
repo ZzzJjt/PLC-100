@@ -1,4 +1,3 @@
-**Python Code: Simulating System Dynamics**
 ```
 import numpy as np
 import matplotlib.pyplot as plt
@@ -45,10 +44,6 @@ plt.legend()
 plt.grid()
 plt.show()
 ```
-**Implementing MPC:**
-
-Now, we will implement a basic MPC algorithm that predicts future tank levels and adjusts the infeed rate based on predicted demand.
-
 ```
 from scipy.optimize import minimize
 
@@ -90,10 +85,3 @@ optimized_infeed = result.x
 # Print the optimized infeed rates
 print("Optimized Infeed Rates (tons/hour):", optimized_infeed)
 ```
-**Conclusion:**
-
-•	The above code first simulates the buffer tank dynamics using a basic model with time delays and fluctuating demand.
-
-•	The MPC algorithm then optimizes the infeed rates to maintain the desired buffer level while considering the two-hour delay and varying outfeed rates.
-
-•	This approach can be extended with more complex models and constraints to reflect the actual production process more accurately.
