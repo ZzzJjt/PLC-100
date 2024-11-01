@@ -36,7 +36,8 @@ int main() {
     UA_Client_delete(&client);
     return 0;
 }
-
+```
+```
 FUNCTION_BLOCK OPC_UA_CLIENT
 VAR_INPUT
     Execute : BOOL;
