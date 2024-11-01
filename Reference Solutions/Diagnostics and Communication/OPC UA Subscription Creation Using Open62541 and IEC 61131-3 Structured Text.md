@@ -56,7 +56,8 @@ static void subscription_data_notification_callback(UA_Client *client,
     (void)notification; // Suppress warning
     (void)userContext; // Suppress warning
 }
-
+```
+```
 FUNCTION_BLOCK OPC_UA_SUBSCRIPTION_CREATION
 VAR_INPUT
     Exec : BOOL;
