@@ -1,4 +1,4 @@
-```
+
 % Define constants and parameters
 numTrays = 10; % Number of trays
 feedRate = 100; % Feed flow rate (arbitrary units)
@@ -49,4 +49,3 @@ for t = 0:N-1
     % Update the state
     x = sys.A * x + sys.B * u(t+1);
 end
-```
