@@ -8,7 +8,7 @@ import time
 def fetch_github_content(url):
     headers = {
         "Accept": "application/vnd.github.v3+json",
-        "Authorization": "Bearer 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"  # 替换为你的 GitHub 访问令牌
+        "Authorization": "Bearer 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"  # 替换为你的 GitHub 访问令牌
     }
     check_rate_limit(headers)  # 检查速率限制
     response = requests.get(url, headers=headers)
