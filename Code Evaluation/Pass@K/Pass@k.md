@@ -1,14 +1,3 @@
-Pass@k 是用于评估生成模型性能的指标，尤其是在自动代码生成任务中。它表示在生成的 k 个候选代码中，是否至少有一个代码是正确的。以下是 Pass@k 的基本实现步骤：
-
-**实现思路：**
-
-	1.	生成代码候选集：模型生成 k 个候选解决方案。
- 
-	2.	评估正确性：检查生成的代码是否正确（通过运行或者比较与参考答案）。
- 
-	3.	Pass@k：计算在所有任务中，模型生成的 k 个代码候选中是否至少有一个是正确的。
-
-**代码实现：**
 ```
 import random
 
@@ -62,27 +51,7 @@ k = 2  # Number of candidates generated per task
 pass_at_k_score = pass_at_k(reference_solutions, generated_code_candidates, k)
 print(f"Pass@{k} Score: {pass_at_k_score:.2f}")
 ```
-**代码解释：**
 
-	1.	is_solution_correct：一个简单的函数用于判断生成的代码是否正确。这可以通过直接比较生成代码与参考代码来实现（在实际情况下，可以通过运行生成代码并检查其输出正确性来判断）。
- 
-	2.	pass_at_k：
- 
-	reference_solutions：这是参考答案列表，每个元素对应一个任务的正确代码。
- 
-	generated_code_candidates：这是生成的候选代码的列表，每个元素是一个子列表，包含 k 个生成的候选代码。
- 
-	k：每个任务生成的代码候选个数。
-在函数内部，通过检查每个任务的 k 个候选代码是否至少有一个正确。如果有，计数器 successful_tasks 增加。最后，Pass@k 的分数是成功解决的任务数占总任务数的比例。
-
-	3.	Example：
- 
-	两个任务的参考解决方案：add 和 multiply 函数。
- 
-	每个任务生成了 2 个候选代码，k=2。
-
-**创新思路：**
-为了实现动态 Pass@k 策略，我们需要根据任务的复杂性调整生成的候选数量 (k)。一种方法是引入一个启发式或函数来确定每个任务的难度，然后相应地调整 k 值。以下是一个示例，其中 k 值根据假设的任务复杂度动态调整：
 ```
 import random
 
@@ -156,9 +125,3 @@ task_complexities = [2, 7]  # Task 1 is easy, Task 2 is difficult
 pass_at_k_score = dynamic_pass_at_k(reference_solutions, generated_code_candidates, task_complexities)
 print(f"Dynamic Pass@k Score: {pass_at_k_score:.2f}")
 ```
-**关键更改：**
-
-	1.	动态 k 值：determine_k 函数根据任务的复杂性调整生成的候选数量 (k)。
-	2.	任务复杂性：可以提供一个复杂度分数或指标来反映每个任务的难度，进而影响生成的候选数量。
-
-这种方法通过为复杂任务分配更多资源（更高的 k 值），同时在简单任务上节省资源，来优化生成过程。你可以根据具体情况修改复杂度指标，甚至可以结合之前的迭代反馈来动态调整 k 值。
