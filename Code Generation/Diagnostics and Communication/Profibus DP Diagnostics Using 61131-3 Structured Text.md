@@ -1,7 +1,3 @@
-**61131-3 Structured Text Function Block: Profibus DP Diagnostics**
-
-The following structured text code outlines a basic function block to retrieve diagnostic data from a Profibus DP slave device. The function block handles communication requests to the slave, retrieves the necessary diagnostic information, and formats it for monitoring.
-
 ```
 FUNCTION_BLOCK FB_ProfibusDPDiagnostics
 VAR
@@ -62,7 +58,7 @@ IF commRequest THEN
     END_IF
 END_IF
 
-(* Step 3: Error handling and communication health *)
+
 IF dataReceived THEN
     (* Extract device status and error code from diagnostic data *)
     deviceStatus := diagnosticData[1]; (* Assuming first byte is device status *)
@@ -82,7 +78,6 @@ ELSE
     diagnosticStatus := FALSE;
 END_IF
 
-(* Step 4: Error handling mechanisms *)
 IF errorFlag THEN
     commHealth := 'Communication Error';
     diagnosticStatus := FALSE;
@@ -90,25 +85,3 @@ IF errorFlag THEN
     dataReceived := FALSE;
 END_IF
 ```
-
-**Explanation of Key Steps**
-
-	1.	Request Initiation:
-	•	The diagnostic process is initiated by setting the triggerDiagnostic input to TRUE.
-	•	Once triggered, the function block sets up the communication request to the specified Profibus DP slave address (inputSlaveAddress).
-	•	The commRequest variable initiates a request to retrieve diagnostic data from the specified slave device.
-	2.	Data Retrieval:
-	•	The function block interacts with the Profibus network using a simulated function Profibus_GetDiagnostics. This function reads diagnostic information from the slave, populating the diagnosticData array.
-	•	If the function returns a status of 0, it indicates successful data retrieval; otherwise, it increments the retry counter and continues until the maximum retries (maxRetries) are reached.
-	3.	Diagnostic Data Processing:
-	•	Once data is successfully retrieved, the function block processes the diagnostic information.
-	•	The device status and error code are extracted from the diagnosticData array.
-	•	The deviceStatus byte is used to determine if the device is operating normally or if there is an error.
-	•	The errorCode is formed by combining two bytes to create a 16-bit error code, which can be used to diagnose specific device issues.
-	4.	Error Handling and Communication Health:
-	•	If the communication status is not successful after maximum retries, the function block sets the errorFlag and the commHealth variable to indicate a communication failure.
-	•	If no errors are detected, the communication health is set to “Device Operating Normally.”
-	5.	Output Status:
-	•	The diagnosticStatus output is set to TRUE if the diagnostic process completes successfully and no errors are found.
-
- 

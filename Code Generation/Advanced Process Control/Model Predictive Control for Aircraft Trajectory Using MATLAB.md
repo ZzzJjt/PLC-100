@@ -1,19 +1,3 @@
-Model : GPT-4o
-> Develop MATLAB code to implement a model predictive control (MPC) algorithm for optimizing the trajectory of an aircraft. Ensure that the control scheme accounts for dynamic constraints, fuel efficiency, and external disturbances, while maintaining flight safety and performance objectives.
-
-To develop a Model Predictive Control (MPC) algorithm for optimizing the trajectory of an aircraft in MATLAB, we’ll break it down into key components:
-
-1.	Aircraft Dynamics Model: We will use a simplified longitudinal model that captures the relationship between the aircraft’s position, velocity, and control inputs (thrust, pitch angle).
-   
-2.	Cost Function: The objective is to minimize fuel consumption, which is influenced by thrust and flight time, while keeping the aircraft within safe operational constraints.
-
-3.	Constraints: These include dynamic constraints (limits on velocity, pitch angle, etc.), safety constraints (altitude, speed limits), and external disturbances like wind or turbulence.
-
-4.	MPC Implementation: MPC will predict the future trajectory over a finite horizon and solve an optimization problem at each time step.
-
-Here’s an outline of the MATLAB code for such an MPC
-
-**Step 1: Define the Aircraft Dynamics Model**
 ```
 function x_dot = aircraft_dynamics(t, x, u, disturbance)
     % x = [altitude; velocity; flight path angle]
@@ -54,25 +38,6 @@ function x_dot = aircraft_dynamics(t, x, u, disturbance)
     x_dot(3) = x_dot(3) + turbulence;  % Modify angle with turbulence disturbance
 end
 ```
-
-**Step 2: MPC Cost Function**
-
-The cost function minimizes fuel consumption while considering safety and performance objectives. This is generally formulated as:
-
-$$
-J = \sum_{k=0}^{N} \left( w_1 \cdot \text{fuel}(u_k) + w_2 \cdot \text{deviation}(x_k) + w_3 \cdot \text{control effort}(u_k) \right)
-$$
-
-Where:
-
-•	fuel(u_k) models fuel consumption.
-
-•	deviation(x_k) penalizes deviation from the desired trajectory.
-
-•	control effort(u_k) penalizes aggressive control inputs to improve fuel efficiency.
-
-**Step 3: MPC Implementation in MATLAB**
-
 ```
 % MPC settings
 N = 20;  % Prediction horizon
@@ -117,11 +82,6 @@ for t = 0:Ts:T_sim
     disp(['Time: ', num2str(t), ' Altitude: ', num2str(x(1)), ' Velocity: ', num2str(x(2))]);
 end
 ```
-
-**Step 4: MPC Optimization Function**
-
-The mpc_control function solves the optimization problem at each time step.
-
 ```
 function u_opt = mpc_control(x, N, x_ref, w1, w2, w3, u_min, u_max, disturbance)
     % Define the optimization variables and constraints here
@@ -141,15 +101,3 @@ function J = cost_function(x, u, x_ref, N, w1, w2, w3)
     J = fuel_consumption + deviation + control_effort;
 end
 ```
-
-**Explanation:**
-
-1.	Aircraft Dynamics Model: The dynamics model calculates the rate of change for altitude, velocity, and flight path angle based on the current state, control inputs (thrust and pitch angle), and external disturbances.
-
-2.	MPC Control Loop: The MPC algorithm predicts the aircraft’s future states over a defined prediction horizon and minimizes a cost function considering fuel consumption, control effort, and trajectory deviation.
-
-3.	Constraints: Dynamic constraints on thrust and pitch angle are enforced to ensure safe and efficient flight.
-
-4.	External Disturbances: External disturbances, such as wind and turbulence, are included in the dynamics model.
-
-This approach can be adapted and expanded with more detailed models or specific flight objectives as required.

@@ -1,7 +1,3 @@
-**1. Variable Declarations:**
-
-The function block uses a combination of input, output, and internal variables to handle communication with the PowerLink network and manage diagnostic data.
-
 ```
 FUNCTION_BLOCK FB_PowerLinkDiagnostics
 VAR
@@ -26,25 +22,6 @@ VAR
     tempString : STRING[255]; (* Temporary variable for building status messages *)
 END_VAR
 ```
-
-**2. Input and Output Descriptions:**
-
-	•	Inputs:
-	•	Execute: Triggers the retrieval of diagnostic information.
-	•	NodeID: The ID of the PowerLink node from which diagnostics are retrieved.
-	•	MN_ID: The ID of the managing node that oversees the PowerLink network.
-	•	Timeout: The timeout duration for communication, set to 3 seconds by default.
-	•	Outputs:
-	•	CommunicationStatus: Indicates if the node is actively communicating.
-	•	NodeHealth: A string that displays the node’s health status.
-	•	ErrorDetected: Indicates if an error is detected during communication.
-	•	ErrorCode: Provides the error code associated with the node, if any.
-	•	NodeStatusDescription: A detailed description of the node’s current status.
-
-**3. Main Function Block Logic:**
-
-The program retrieves diagnostic data from a control node using the PowerLink managing node. A timer is used to handle communication timeouts, and the diagnostic data is processed using a series of checks and conditional statements.
-
 ```
 (* Step 1: Trigger Diagnostic Request *)
 IF Execute THEN
@@ -115,27 +92,9 @@ IF diagRequest THEN
         NodeStatusDescription := 'Failed to Retrieve Diagnostics';
         NodeHealth := 'Communication Failure';
     END_IF
-
     (* Clear the diagnostic request and stop the timer *)
     diagRequest := FALSE;
     commTimer(IN := FALSE);
     requestInProgress := FALSE;
 END_IF
 ```
-
-**4. Detailed Explanation:**
-
-	1.	Trigger Diagnostic Request:
-	•	The function block starts by setting the diagRequest flag when Execute is TRUE. This flag triggers the diagnostic read operation.
-	•	The timer (commTimer) is started with a preset timeout value to ensure the operation does not hang indefinitely.
-	2.	Timer Management:
-	•	If the timer elapses before a response is received (commTimer.Q = TRUE), the function block treats the operation as a timeout.
-	•	It updates the CommunicationStatus to FALSE, sets ErrorDetected to TRUE, and populates the ErrorCode with a timeout error value.
-	3.	Retrieving Diagnostic Data:
-	•	The ReadDiagnostics function is a placeholder representing the communication with the PowerLink managing node (MN). It populates the diagBuffer array with raw diagnostic data.
-	•	The first byte of diagBuffer is checked to determine the communication status. If it’s zero, the communication is successful.
-	4.	Processing Diagnostic Data:
-	•	The second byte of diagBuffer is used to determine the node’s health status using a CASE statement. Each status is mapped to a corresponding description and health indicator.
-	•	If an error is detected (e.g., Critical Fault Detected), the function block sets the ErrorDetected flag and populates the ErrorCode with a specific fault code.
-	5.	Resetting Diagnostic Request:
-	•	Once the diagnostic data is processed, the function block resets the diagRequest flag and stops the communication timer.

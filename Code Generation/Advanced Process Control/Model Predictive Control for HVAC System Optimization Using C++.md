@@ -1,10 +1,3 @@
-**Solution Approach:**
-
-	1.	Develop a C++ simulation model to represent the thermal dynamics of an HVAC system.
-	2.	Implement an MPC algorithm that predicts future states of temperature and humidity and optimally adjusts control inputs (e.g., heating/cooling power and fan speed).
-	3.	Simulate the system under varying external conditions and demonstrate the effectiveness of the MPC algorithm.
-
-**C++ Implementation:**
 ```
 #include <iostream>
 #include <vector>
@@ -100,20 +93,3 @@ int main() {
     return 0;
 }
 ```
-**Explanation of Code:**
-
-  	1.	External Conditions Simulation:
-
-	•	Functions external_temperature and external_humidity simulate varying external conditions using sinusoidal patterns to represent typical environmental fluctuations.
-
-	2.	HVAC System Dynamics:
- 
-	•	The room_temperature_dynamics function calculates changes in room temperature based on heating/cooling power and external conditions.
-	•	The room_humidity_dynamics function models changes in humidity based on external humidity and occupancy levels.
- 
-	3.	MPC Algorithm:
- 
-	•	The model_predictive_control function uses a simple proportional control approach to adjust heating and cooling power based on predicted future errors. In a full MPC implementation, a quadratic optimization solver can be used to minimize the control effort while maintaining comfort.
-	4.	Simulation and Output:
- 
-	•	The main function simulates 24 hours of HVAC operation, printing the results for temperature, humidity, and control inputs (heating and cooling power).

@@ -1,5 +1,3 @@
-The following structured text program outlines a function block for retrieving diagnostic data from a Profibus device using the Profibus DPV1 protocol. The program uses a CASE statement to handle ten specific diagnostic data types and ensures that each diagnostic is correctly interpreted based on its unique format. The logic is designed to handle error detection, fault identification, and status reporting, ensuring robust communication and processing.
-
 ```
 FUNCTION_BLOCK FB_ProfibusDPV1Diagnostics
 VAR
@@ -113,32 +111,3 @@ ELSE
     errorStatus := FALSE;
 END_IF
 ```
-
-Implementation Details
-
-	1.	Request Initialization:
-	•	The diagnostic process is triggered by setting the triggerDiagnostic input to TRUE.
-	•	Once triggered, the function block sets up a communication request to the specified Profibus DPV1 device using the address provided (inputDeviceAddress).
-	•	The commRequest flag initiates a read operation to retrieve diagnostic data.
-	2.	Data Retrieval and Parsing:
-	•	The function block communicates with the Profibus device using a simulated function, Profibus_DPV1_ReadDiagnostics, to populate the diagBuffer array with raw diagnostic data.
-	•	The status of the communication is monitored using the commStatus variable. A 0 indicates successful data retrieval, while any other value triggers an error response.
-	3.	Handling Diagnostic Data Using CASE Statements:
-	•	The program uses a CASE statement to handle up to 10 different diagnostic data types. Each diagnostic type is represented by a unique identifier (diagType) retrieved from the diagBuffer.
-	•	For each diagnostic type, the corresponding diagnostic message is generated and stored in the diagData variable.
-	•	The faultDescription variable provides additional details for critical errors or warnings, such as fault codes or status information.
-	4.	Diagnostic Data Types:
-	•	1: Communication Error: Indicates an error in communication with the device. The error code is displayed.
-	•	2: Device Status: Reports whether the device is running or stopped.
-	•	3: Parameter Fault: Represents a parameter fault, with the fault code displayed.
-	•	4: Configuration Error: Indicates a configuration mismatch or error.
-	•	5: Data Transmission Fault: Signals an issue during data transmission.
-	•	6: Overload Error: Represents a device overload condition.
-	•	7: Temperature Warning: Indicates a temperature warning, with the warning code displayed.
-	•	8: Voltage Error: Reports a voltage issue, such as overvoltage or undervoltage.
-	•	9: Device Reset Required: Indicates that a manual reset is necessary.
-	•	10: Unknown Diagnostic Type: Used for diagnostic types that are not yet supported or recognized.
-	5.	Error Handling and Status Reporting:
-	•	If communication fails (commStatus is not 0), the program sets the errorFlag to TRUE and updates the faultDescription with an error message.
-	•	If the diagnostics are successfully retrieved and processed, the diagnosticStatus output is set to TRUE.
-	•	All diagnostic types not covered by the CASE statement are reported as “Unsupported Diagnostic Type.”

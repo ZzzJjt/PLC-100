@@ -1,5 +1,3 @@
-The following structured text code outlines a function block to read five process values from a remote IO-Link master device. The function block communicates with the IO-Link master, retrieves process data for connected devices, and handles error checking and status reporting.
-
 ```
 FUNCTION_BLOCK FB_IOLinkDataAcquisition
 VAR
@@ -94,24 +92,3 @@ IF NOT commRequest THEN
     requestSent := FALSE;
 END_IF
 ```
-Key Methodology
-
-	1.	Request Initiation:
-	•	The process starts with setting the triggerRead input to TRUE. This triggers the function block to start a communication request.
-	•	The commRequest flag initiates the read operation, and the currentIndex variable is set to 1 to begin reading the first process value.
-	2.	Data Retrieval:
-	•	The function block attempts to read process data using a simulated IO-Link communication function (IO_Link_ReadData). This function is assumed to take the master address and index of the value being read as parameters and returns a raw byte value.
-	•	The raw byte data is converted into a REAL value using a conversion function (REAL_TO_REAL), which would be replaced with the actual scaling logic based on the data format.
-	3.	Error Handling:
-	•	The function block keeps track of the number of retry attempts (retryCount) and checks the commStatus returned by the read operation.
-	•	If commStatus is not 0, indicating a communication issue, the function block increments the retry counter and sets an error flag (statusFlags[currentIndex] := FALSE).
-	•	If retryCount exceeds maxRetries, the read operation is marked as a failure (readError := TRUE), and further read attempts are stopped.
-	4.	Status Reporting:
-	•	The overall read status (readStatus) is updated based on the success of reading all five values.
-	•	The commHealth string variable reports the communication status:
-	•	"Communication Successful" if all values were read successfully.
-	•	"Reading In Progress" if the read operation is ongoing.
-	•	"Communication Error: Max Retries Exceeded" if communication failed.
-	5.	Handling Potential Communication Issues:
-	•	If the read operation fails for any index, the function block continues retrying until maxRetries is reached.
-	•	After completing the read for all five values or reaching a maximum retry limit, the function block resets its control flags (requestSent and commRequest) to allow new read requests.

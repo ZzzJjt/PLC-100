@@ -1,6 +1,3 @@
-**1. Variable Declarations:**
-
-The function block uses separate status flags, error codes, and alarm variables for each protocol. An internal timer is used to periodically check each connection.
 ```
 FUNCTION_BLOCK FB_CommMonitoring
 VAR
@@ -37,11 +34,6 @@ VAR_OUTPUT
     MonitoringActive : BOOL; (* TRUE if communication monitoring is active *)
 END_VAR
 ```
-
-**2. Initialization and Timer Setup:**
-
-The monitoring logic is triggered using the Execute input. A timer (commCheckTimer) is used to execute the monitoring routine every 5 seconds.
-
 ```
 (* Initialization *)
 IF Execute THEN
@@ -55,10 +47,6 @@ ELSE
     RETURN;
 END_IF
 ```
-
-**3. Monitoring Logic for Each Protocol:**
-
-The function block checks the connection status of each protocol and handles alarms and audit trail entries based on connection status and error codes.
 ```
 (* Check Connection Status on Timer Trigger *)
 IF commCheckTimer.Q THEN
@@ -97,31 +85,12 @@ IF commCheckTimer.Q THEN
     END_IF
 END_IF
 ```
-**4. Audit Trail Management:**
-
-The AuditTrail array stores up to 100 entries. If the array is full, it wraps around to the beginning, overwriting old entries.
 ```
 (* Manage Audit Trail Overflow *)
 IF auditIndex > 100 THEN
     auditIndex := 1; (* Wrap around if the audit trail is full *)
 END_IF
 ```
-**5. Implementation Details:**
-
-	1.	Input Variables:
-	•	OPCUA_Connected, Modbus_Connected, and Profinet_Connected: Boolean flags indicating the connection status of each protocol.
-	•	OPCUA_ErrorCode, Modbus_ErrorCode, and Profinet_ErrorCode: Error codes corresponding to connection failures for each protocol.
-	2.	Output Variables:
-	•	OPCUA_Alarm, Modbus_Alarm, and Profinet_Alarm: Alarm flags that are set when a corresponding protocol’s connection fails.
-	•	MonitoringActive: Indicates whether the communication monitoring function block is actively monitoring the connections.
-	3.	Audit Trail Array:
-	•	The AuditTrail array stores the log messages for each communication failure, including the reason for failure and the associated error code.
-	•	The array index (auditIndex) is incremented each time a new message is added, wrapping around if the index exceeds the maximum size.
-	4.	Timer Control:
-	•	A timer (commCheckTimer) is used to periodically check each protocol’s connection status.
-	•	The timer runs every 5 seconds (timerInterval := T#5s), ensuring that the monitoring function block performs regular checks.
-
-**6. Example of Function Block Integration:**
 ```
 PROGRAM Main
 VAR
